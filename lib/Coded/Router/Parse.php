@@ -6,7 +6,7 @@ class Parse
 {
     private $get = [];
 
-    function __construct($url, int $skip = 0)
+    function __construct($url, int $skip = null)
     {
         $key = 0;
         $this->get = [];
@@ -27,7 +27,8 @@ class Parse
 
     function get(int $n = null)
     {
-        return $this->get[$n] ?? $this->get;
+        if ($n === null) return $this->get;
+        return $this->get[$n] ?? null;
     }
 
     private static function parse($string)
