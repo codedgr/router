@@ -43,7 +43,7 @@ class Parse
 
     static function url()
     {
-        $url = defined('PARSE_URL') ? PARSE_URL : $_SERVER['REQUEST_SCHEME'] . '://' . $_SERVER['HTTP_HOST'];
+        $url = defined('PARSE_URL') ? PARSE_URL : ($_SERVER['HTTP_X_FORWARDED_PROTO'] ? $_SERVER['HTTP_X_FORWARDED_PROTO'] : $_SERVER['REQUEST_SCHEME']) . '://' . $_SERVER['HTTP_HOST'];
         $args = [];
         $input = array_filter(func_get_args());
         if (!$input) return trim($url, '/');
